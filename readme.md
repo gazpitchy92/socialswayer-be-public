@@ -12,27 +12,6 @@ Please see the postman.json import for details on each API endpoint.
 docker-compose up --build -d
 ```
 
-## Build (Without Docker)
-The backup of the Mysql database can be found in the /database/ directory. 
-
-A MySQL database should be built with these files. 
-
-The connection details must be updated in /src/database.ts prior to building. 
-
-To build the typescript run the following command.
-
-```bash
-npm install
-npx tsc
-```
-
-## Host (Without Docker)
-To run the server on the default http://localhost:3000 run the following command:
-
-```bash
-node dist/index.js
-```
-
 ## Usage
 The main use of this project is to host API endpoints used by a front-end.
 
@@ -60,3 +39,24 @@ Location  | Usage
 /classes/types.ts   |   Entry type TS definitions
 /classes/database/database.ts   |   Contains connection functions for the database
 /classes/database/queries.ts  |   Contains all of the database queries used
+
+## Build (Without Docker)
+The backup of the Mysql database can be found in the /database/ directory. 
+
+A MySQL database should be built with these files. 
+
+The connection details must be updated in /src/database.ts prior to building. 
+
+To build the typescript run the following command.
+
+```bash
+npm install
+npx tsc
+```
+
+## Host (Without Docker)
+To run the server on the default http://localhost:3000 run the following command:
+
+```bash
+node dist/index.js
+```
