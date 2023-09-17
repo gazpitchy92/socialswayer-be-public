@@ -44,6 +44,12 @@ A Postman.json file can be found in the root of the repo for examples on the fol
 ## Main File Structure
 Here is a list of the main project files and their structure. 
 
+
+Location  | Usage
+------------- | -------------
+/database/  | Contains .sql files for building MySQL
+/src/  | Main root for project files
+
 ```bash
 /database/ - Contains .sql files for building MySQL
 /src/ - Main root for project files
