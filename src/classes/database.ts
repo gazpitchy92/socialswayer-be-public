@@ -17,8 +17,8 @@ class Database {
     try {
       this.connection = await mysql.createConnection({
         host: "192.168.1.110",
-        user: "",
-        password: "",
+        user: "socialswayer",
+        password: "letmein123",
         database: "members" 
       });
     } catch (err) {
