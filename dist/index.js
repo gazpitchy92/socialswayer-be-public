@@ -18,23 +18,30 @@ const newsApi_1 = __importDefault(require("./classes/newsApi"));
 const guidesApi_1 = __importDefault(require("./classes/guidesApi"));
 const linksApi_1 = __importDefault(require("./classes/linksApi"));
 const plansApi_1 = __importDefault(require("./classes/plansApi"));
+const auth_1 = __importDefault(require("./classes/auth"));
 // Setup Express
 const app = (0, express_1.default)();
 const port = 3000;
+const host = "http://localhost";
 // Class Objects
 const newsApi = new newsApi_1.default();
 const guidesApi = new guidesApi_1.default();
 const linksApi = new linksApi_1.default();
 const plansApi = new plansApi_1.default();
+const auth = new auth_1.default();
 // API Endpoints
 app.get('/api/news', (req, res) => __awaiter(void 0, void 0, void 0, function* () { newsApi.getNews(req, res); })); // GET /api/news
 app.get('/api/guides', (req, res) => __awaiter(void 0, void 0, void 0, function* () { guidesApi.getGuides(req, res); })); // GET /api/guides
 app.get('/api/links', (req, res) => __awaiter(void 0, void 0, void 0, function* () { linksApi.getLinks(req, res); })); // GET /api/links
 app.get('/api/plans', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.query.id;
-    plansApi.getPlans(req, res, id);
-})); // GET /api/plans/:id
+    if (yield auth.checkAuth(req, res)) {
+        plansApi.getPlans(req, res);
+    }
+    else {
+        res.status(401).json({ error: 'Unauthorized' });
+    }
+})); // GET /api/plans?id=:id
 // Start API
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+app.listen(port, host, () => {
+    console.log(`Server is running on ${host}:${port}`);
 });

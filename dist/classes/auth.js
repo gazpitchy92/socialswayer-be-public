@@ -13,38 +13,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("./database"));
-class PlansApi {
+class Auth {
     constructor() {
         this.db = database_1.default.getInstance();
     }
-    getPlans(req, res) {
+    checkAuth(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                yield this.db.connect();
                 const id = req.query.id;
-                if (id != undefined) {
-                    yield this.db.connect();
-                    const connection = this.db.getConnection();
-                    const [rows] = yield connection.query('SELECT * FROM plans WHERE id = ?', [id]);
-                    const data = rows.map((row) => ({
-                        status: row.status,
-                        name: row.name,
-                        url: row.url,
-                        planId: row.plan_id,
-                        accountLimit: row.account_limit,
-                        projectLimit: row.project_limit,
-                        proxyLimit: row.proxy_limit,
-                        slaveLimit: row.slave_limit,
-                    }));
-                    res.json(data);
+                const authorizationHeader = req.headers.Authorization || req.headers.authorization;
+                const connection = this.db.getConnection();
+                const [rows] = yield connection.query('SELECT * FROM api_tokens WHERE user_id = ? AND token = ?', [id, authorizationHeader]);
+                if (rows.length === 0) {
+                    return false;
                 }
                 else {
-                    res.status(422).json({ error: 'No ID Supplied' });
+                    return true;
                 }
             }
             catch (err) {
-                res.status(500).json({ error: 'Internal Server Error' });
+                return false;
             }
         });
     }
 }
-exports.default = PlansApi;
+exports.default = Auth;

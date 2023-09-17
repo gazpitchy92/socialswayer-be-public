@@ -10,9 +10,10 @@ class PlansApi {
     this.db = Database.getInstance();
   }
 
-  public async getPlans(req: Request, res: Response, id?: string): Promise<void> {
+  public async getPlans(req: Request, res: Response): Promise<void> {
     try {
-      if (id) {
+      const id = req.query.id as string | undefined; 
+      if (id != undefined) {
         await this.db.connect();
         const connection = this.db.getConnection();
         const [rows] = await connection.query<RowDataPacket[]>(
@@ -37,6 +38,7 @@ class PlansApi {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
 }
 
 export default PlansApi;
