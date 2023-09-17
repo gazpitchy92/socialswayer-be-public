@@ -1,6 +1,5 @@
 # SocialSwayer API
-
-Express.JS and TypeScript API for distributing data for the SocialSwayer front-end.
+node.js (Express.JS) and TypeScript API for distributing data for the SocialSwayer front-end.
 
 ## Build
 The backup of the Mysql database can be found in the /database/ directory. 
@@ -17,7 +16,6 @@ npx tsc
 ```
 
 ## Hosting
-
 To run the server on the default http://localhost:3000 run the following command:
 
 ```bash
@@ -25,7 +23,6 @@ node dist/index.js
 ```
 
 ## Usage
-
 A Postman.json file can be found in the root of the repo for examples on the following API endpoints:
 
 ```bash
