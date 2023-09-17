@@ -6,6 +6,7 @@ class Database {
 
   private constructor() {}
 
+  // Return instance of database
   public static getInstance(): Database {
     if (!Database.instance) {
       Database.instance = new Database();
@@ -13,6 +14,7 @@ class Database {
     return Database.instance;
   }
 
+  // Get new datbase connection
   public async connect(): Promise<void> {
     try {
       this.connection = await mysql.createConnection({
@@ -27,6 +29,7 @@ class Database {
     }
   }
 
+  // Get the current database connection
   public getConnection(): mysql.Connection {
     if (!this.connection) {
       throw new Error('Database connection is not established.');
