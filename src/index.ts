@@ -11,7 +11,6 @@ import PlansApi from './classes/api/plans';
 // Setup Express.JS
 const app = express();
 const port = 3000;
-const host = "http://localhost";
 
 // Class Objects
 const newsApi = new NewsApi();
@@ -26,6 +25,6 @@ app.get('/api/links', async (req, res) => { linksApi.getLinks(req, res); }); // 
 app.get('/api/plans', async (req, res) => { plansApi.getPlans(req, res); }); // PlansAPI
 
 // Start Server
-app.listen(port, host, () => {
-  console.log(`Server is running on ${host}:${port}`);
+app.listen(port,  () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });

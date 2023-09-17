@@ -17,12 +17,14 @@ class Database {
     constructor() {
         this.connection = null;
     }
+    // Return instance of database
     static getInstance() {
         if (!Database.instance) {
             Database.instance = new Database();
         }
         return Database.instance;
     }
+    // Get new datbase connection
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -39,6 +41,7 @@ class Database {
             }
         });
     }
+    // Get the current database connection
     getConnection() {
         if (!this.connection) {
             throw new Error('Database connection is not established.');

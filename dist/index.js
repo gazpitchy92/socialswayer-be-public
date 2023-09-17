@@ -23,7 +23,6 @@ const plans_1 = __importDefault(require("./classes/api/plans"));
 // Setup Express.JS
 const app = (0, express_1.default)();
 const port = 3000;
-const host = "http://localhost";
 // Class Objects
 const newsApi = new news_1.default();
 const guidesApi = new guides_1.default();
@@ -35,6 +34,6 @@ app.get('/api/guides', (req, res) => __awaiter(void 0, void 0, void 0, function*
 app.get('/api/links', (req, res) => __awaiter(void 0, void 0, void 0, function* () { linksApi.getLinks(req, res); })); // LinksAPI
 app.get('/api/plans', (req, res) => __awaiter(void 0, void 0, void 0, function* () { plansApi.getPlans(req, res); })); // PlansAPI
 // Start Server
-app.listen(port, host, () => {
-    console.log(`Server is running on ${host}:${port}`);
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });

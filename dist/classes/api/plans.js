@@ -30,40 +30,39 @@ class PlansApi {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 // Check auth
-                if (yield this.auth.checkAuth(req, res)) {
-                    const id = req.query.id;
-                    if (id != undefined) {
-                        // Connect to the database
-                        yield this.db.connect();
-                        const connection = this.db.getConnection();
-                        // Query the plans table
-                        const [rows] = yield connection.query(this.queries.plans(), [id]);
-                        // Build the JSON with returned DB data
-                        const data = rows.map((row) => ({
-                            status: row.status,
-                            name: row.name,
-                            url: row.url,
-                            planId: row.plan_id,
-                            accountLimit: row.account_limit,
-                            projectLimit: row.project_limit,
-                            proxyLimit: row.proxy_limit,
-                            slaveLimit: row.slave_limit,
-                        }));
-                        // Return the JSON 
-                        res.json(data);
-                    }
-                    else {
-                        // Invalid User ID supplied
-                        res.status(422).json({ error: 'No ID Supplied' });
-                    }
+                //if (await this.auth.checkAuth(req, res)) {
+                const id = req.query.id;
+                if (id != undefined) {
+                    // Connect to the database
+                    yield this.db.connect();
+                    const connection = this.db.getConnection();
+                    // Build the JSON with returned DB data
+                    const [rows] = yield connection.query(this.queries.plans(), [id]);
+                    const data = rows.map((row) => ({
+                        status: row.status,
+                        name: row.name,
+                        url: row.url,
+                        planId: row.plan_id,
+                        accountLimit: row.account_limit,
+                        projectLimit: row.project_limit,
+                        proxyLimit: row.proxy_limit,
+                        slaveLimit: row.slave_limit,
+                    }));
+                    // Return the JSON 
+                    res.json(data);
                 }
                 else {
-                    // Unauthorised
-                    res.status(401).json({ error: 'Unauthorised' });
+                    // Invalid User ID supplied
+                    res.status(422).json({ error: 'No ID Supplied' });
                 }
+                // } else {
+                //   // Unauthorised
+                //   res.status(401).json({ error: 'Unauthorised' });
+                // }
             }
             catch (err) {
                 // General 500 error
+                console.error(err);
                 res.status(500).json({ error: 'Internal Server Error' });
             }
         });

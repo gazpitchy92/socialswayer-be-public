@@ -43,6 +43,8 @@ class NewsApi {
                 res.json(data);
             }
             catch (err) {
+                // General 500 error
+                console.error(err);
                 res.status(500).json({ error: 'Internal Server Error' });
             }
         });
