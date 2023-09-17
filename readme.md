@@ -19,7 +19,7 @@ The backup of the Mysql database can be found in the /database/ directory.
 
 A MySQL database should be built with these files. 
 
-The connection details must be updated in /src/database.ts prior to building. 
+The connection details must be updated in /src/classes/database/database.ts prior to building. 
 
 To build the typescript run the following command.
 
