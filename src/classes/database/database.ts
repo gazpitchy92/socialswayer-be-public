@@ -18,8 +18,8 @@ class Database {
   public async connect(): Promise<void> {
     try {
       this.connection = await mysql.createConnection({
-        host: "192.168.1.110",
-        user: "socialswayer",
+        host: "localhost",
+        user: "root",
         password: "letmein123",
         database: "members" 
       });

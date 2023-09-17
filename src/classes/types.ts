@@ -1,5 +1,7 @@
 
+// Entry name space for these types
 namespace entry {
+
   // NewsAPI entry type
   export type news = {
     date: Date;
@@ -32,6 +34,7 @@ namespace entry {
     proxyLimit: number;
     slaveLimit: number;
   };
+
 }
 
 export default entry;
