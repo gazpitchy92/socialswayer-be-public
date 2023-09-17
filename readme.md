@@ -44,10 +44,10 @@ A Postman.json file can be found in the root of the repo for examples.
 
 API Endpoint  | Usage         | Example Response
 ------------- | ------------- | -------------
-/api/news | Returns a list of public news articles | ```javascript { "some": "json" }```
-/api/guides  | Returns a list of public tutorials and guides | ```javascript { "some": "json" }```
-/api/links   |   Returns a public list of affiliate links | ```javascript { "some": "json" }```
-/api/plans?id=:id  |   Returns an authorised list of the users current subscriptions | ```javascript { "some": "json" }```
+/api/news | Returns a list of public news articles | ```javascript [{"date":"2023-09-04","type":"Message","status":"ok","message":"Test Message"}]```
+/api/guides  | Returns a list of public tutorials and guides | ```javascript [{"name":"Initial Setup","url":"www.socialswayer.com/initial-setup"}]```
+/api/links   |   Returns a public list of affiliate links | ```javascript [{"name":"Buy Proxies","url":"https://proxy-seller.com/?partner=P1VAKXM8MJPZC5"},{"name":"Discord Server","url":"https://discord.gg/By7ZWzjxcf"}]```
+/api/plans?id=:id  |   Returns an authorised list of the users current subscriptions | ```javascript [{"name":"elite","accountLimit":999999,"projectLimit":999999,"proxyLimit":50,"slaveLimit":200}]```
 
 ## File Structure
 Here is a list of the main project files and their structure. 
