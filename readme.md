@@ -3,6 +3,8 @@ Node.js (Express.JS and TypeScript) API for distributing data for the SocialSway
 
 SocialSwayer is an SEO managed services tool which requires a user subscription, the main use of this API is to remotely deliver information and news to these remotely managed services.  
 
+API documentation can be found on https://documenter.getpostman.com/view/8587850/2s9YC7TBpU
+
 ## Build and Host
 This project can be entirely ran within docker with the following command, no further changes are required.
 
