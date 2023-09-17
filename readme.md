@@ -42,12 +42,12 @@ documentation can also be found on https://documenter.getpostman.com/view/858785
 
 A Postman.json file can be found in the root of the repo for examples.
 
-API Endpoint  | Usage
-------------- | -------------
-/api/news | Returns a list of public news articles
-/api/guides  | Returns a list of public tutorials and guides
-/api/links   |   Returns a public list of affiliate links
-/api/plans?id=:id  |   Returns an authorised list of the users current subscriptions
+API Endpoint  | Usage         | Example Response
+------------- | ------------- | -------------
+/api/news | Returns a list of public news articles | ```javascript { "some": "json" }```
+/api/guides  | Returns a list of public tutorials and guides | ```javascript { "some": "json" }```
+/api/links   |   Returns a public list of affiliate links | ```javascript { "some": "json" }```
+/api/plans?id=:id  |   Returns an authorised list of the users current subscriptions | ```javascript { "some": "json" }```
 
 ## File Structure
 Here is a list of the main project files and their structure. 
