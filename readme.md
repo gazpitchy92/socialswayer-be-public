@@ -36,6 +36,8 @@ node dist/index.js
 ## Usage
 The main use of this project is to host API endpoints used by a front-end.
 
+documentation can also be found on https://documenter.getpostman.com/view/8587850/2s9YC7TBpU
+
 A Postman.json file can be found in the root of the repo for examples.
 
 API Endpoint  | Usage
