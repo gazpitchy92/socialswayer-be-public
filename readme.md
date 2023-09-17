@@ -17,6 +17,8 @@ npx tsc
 
 ## Hosting
 
+To run the server on the default http://localhost:3000 run the following command:
+
 ```bash
 node dist/index.js
 ```
