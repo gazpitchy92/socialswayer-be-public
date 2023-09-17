@@ -5,7 +5,7 @@ Node.js (Express.JS and TypeScript) API for distributing data for the SocialSway
 This project can be entirely ran within docker with the following command.
 
 ```bash
-docker-compose up
+docker-compose up --build
 ```
 
 ## Build (Without Docker)
