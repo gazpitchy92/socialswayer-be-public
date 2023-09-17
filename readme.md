@@ -40,3 +40,18 @@ A Postman.json file can be found in the root of the repo for examples on the fol
 /api/links
 /api/plans?id=:id
 ```
+
+## Main File Structure
+Here is a list of the main project files and their structure. 
+
+```bash
+/database/ - Contains .sql files for building MySQL
+/src/ - Main root for project files
+/src/index.ts - API Router and main server config
+/classes/api - Contains classes for each API Endpoint
+/classes/auth.ts - Auth class location
+/classes/types.ts - Entry type TS definitions
+/classes/database/database.ts - Contains connection functions for the database
+/classes/database/queries.ts - Contains all of the database queries used
+```
+
