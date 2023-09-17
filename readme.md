@@ -1,6 +1,8 @@
 # SocialSwayer API
 Node.js (Express.JS and TypeScript) API for distributing data for the SocialSwayer front-end.
 
+SocialSwayer is an SEO managed services tool which requires a user subscription, the main use of this API is to remotely deliver information and news to these remotely managed services.  
+
 ## Build and Host (With Docker)
 This project can be entirely ran within docker with the following command, no further changes are required.
 
@@ -32,14 +34,16 @@ node dist/index.js
 ```
 
 ## Usage
-A Postman.json file can be found in the root of the repo for examples on the following API endpoints:
+The main use of this project is to host API endpoints used by a front-end.
 
-```bash
-/api/news
-/api/guides
-/api/links
-/api/plans?id=:id
-```
+A Postman.json file can be found in the root of the repo for examples.
+
+API Endpoint  | Usage
+------------- | -------------
+/api/news | Returns a list of public news articles
+/api/guides  | Returns a list of public tutorials and guides
+/api/links   |   Returns a public list of affiliate links
+/api/plans?id=:id  |   Returns an authorised list of the users current subscriptions
 
 ## Main File Structure
 Here is a list of the main project files and their structure. 
@@ -54,4 +58,3 @@ Location  | Usage
 /classes/types.ts   |   Entry type TS definitions
 /classes/database/database.ts   |   Contains connection functions for the database
 /classes/database/queries.ts  |   Contains all of the database queries used
-
