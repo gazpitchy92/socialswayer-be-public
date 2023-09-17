@@ -26,7 +26,7 @@ class LinksApi {
       const connection = this.db.getConnection();
       // Query the links table
       const [rows] = await connection.query<RowDataPacket[]>(
-        this.queries.links()
+        this.queries.all("links")
       );
       // Build the JSON with returned DB data
       const data: entry.link[] = rows.map((row: any) => ({

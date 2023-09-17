@@ -47,7 +47,7 @@ API Endpoint  | Usage
 /api/links   |   Returns a public list of affiliate links
 /api/plans?id=:id  |   Returns an authorised list of the users current subscriptions
 
-## Main File Structure
+## File Structure
 Here is a list of the main project files and their structure. 
 
 Location  | Usage

@@ -26,7 +26,7 @@ class NewsApi {
       const connection = this.db.getConnection();
       // Query the news table
       const [rows] = await connection.query<RowDataPacket[]>(
-        this.queries.news()
+        this.queries.all("news")
       );
       // Build the JSON with returned DB data
       const data: entry.news[] = rows.map((row: any) => ({

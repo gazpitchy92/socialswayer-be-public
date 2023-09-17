@@ -26,7 +26,7 @@ class GuidesApi {
       const connection = this.db.getConnection();
       // Query the guides table
       const [rows] = await connection.query<RowDataPacket[]>(
-        this.queries.guides()
+        this.queries.all("guides")
       );
       // Build the JSON with returned DB data
       const data: entry.guide[] = rows.map((row: any) => ({
