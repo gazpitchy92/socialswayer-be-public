@@ -29,8 +29,8 @@ class Database {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 this.connection = yield promise_1.default.createConnection({
-                    host: "192.168.1.110",
-                    user: "socialswayer",
+                    host: "localhost",
+                    user: "root",
                     password: "letmein123",
                     database: "members"
                 });
