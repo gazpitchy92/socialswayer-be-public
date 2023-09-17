@@ -2,6 +2,13 @@
 Node.js (Express.JS and TypeScript) API for distributing data for the SocialSwayer front-end.
 
 ## Build
+This project can be entirely ran within docker with the following command.
+
+```bash
+docker-compose up
+```
+
+## Build
 The backup of the Mysql database can be found in the /database/ directory. 
 
 A MySQL database should be built with these files. 
