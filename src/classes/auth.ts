@@ -5,6 +5,7 @@ import { RowDataPacket } from 'mysql2/promise';
 class Auth {
   private db: Database;
 
+  // Get DB connection object
   constructor() {
     this.db = Database.getInstance();
   }
