@@ -1,3 +1,4 @@
+CREATE SCHEMA IF NOT EXISTS members;
 USE members;
 
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)

@@ -2,10 +2,10 @@
 Node.js (Express.JS and TypeScript) API for distributing data for the SocialSwayer front-end.
 
 ## Build and Host (With Docker)
-This project can be entirely ran within docker with the following command.
+This project can be entirely ran within docker with the following command, no further changes are required.
 
 ```bash
-docker-compose up --build
+docker-compose up --build -d
 ```
 
 ## Build (Without Docker)
