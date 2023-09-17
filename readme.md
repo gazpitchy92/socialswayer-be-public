@@ -55,6 +55,7 @@ Here is a list of the main project files and their structure.
 Location  | Usage
 ------------- | -------------
 /postman.json  | Postman API examples export file
+/docker-compose.yml  | Docker compose yaml file
 /database/  | Contains .sql files for building MySQL
 /src/  | Main root for project files
 /src/index.ts   |   API Router and main server config
