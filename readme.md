@@ -5,6 +5,7 @@ Express.JS and TypeScript API for distributing data for the SocialSwayer front-e
 ## Build
 
 ```bash
+npm install
 npx tsc
 ```
 
