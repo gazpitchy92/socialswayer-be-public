@@ -1,5 +1,5 @@
-// This is the main file for launching node.
-// It specifies our endpoints and routing logic.
+// This is the main file for launching.
+// It specifies the endpoints and routing logic.
 
 // Imports
 import express from 'express';

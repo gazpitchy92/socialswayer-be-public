@@ -19,7 +19,6 @@ const auth_1 = __importDefault(require("../auth"));
 // The PlansAPI Endpoint returns subscription plan specifications for a user.
 // This API Endpoint requires the User to supply an ID and aslo an authorization token header.
 class PlansApi {
-    // Get DB connection and Auth object
     constructor() {
         this.db = database_1.default.getInstance();
         this.auth = new auth_1.default();
@@ -30,35 +29,36 @@ class PlansApi {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 // Check auth
-                //if (await this.auth.checkAuth(req, res)) {
-                const id = req.query.id;
-                if (id != undefined) {
-                    // Connect to the database
-                    yield this.db.connect();
-                    const connection = this.db.getConnection();
-                    // Build the JSON with returned DB data
-                    const [rows] = yield connection.query(this.queries.plans(), [id]);
-                    const data = rows.map((row) => ({
-                        status: row.status,
-                        name: row.name,
-                        url: row.url,
-                        planId: row.plan_id,
-                        accountLimit: row.account_limit,
-                        projectLimit: row.project_limit,
-                        proxyLimit: row.proxy_limit,
-                        slaveLimit: row.slave_limit,
-                    }));
-                    // Return the JSON 
-                    res.json(data);
+                if (yield this.auth.checkAuth(req, res)) {
+                    const id = req.query.id;
+                    if (id != undefined) {
+                        // Connect to the database
+                        yield this.db.connect();
+                        const connection = this.db.getConnection();
+                        // Build the JSON with returned DB data
+                        const [rows] = yield connection.query(this.queries.plans(), [id]);
+                        const data = rows.map((row) => ({
+                            status: row.status,
+                            name: row.name,
+                            url: row.url,
+                            planId: row.plan_id,
+                            accountLimit: row.account_limit,
+                            projectLimit: row.project_limit,
+                            proxyLimit: row.proxy_limit,
+                            slaveLimit: row.slave_limit,
+                        }));
+                        // Return the JSON 
+                        res.json(data);
+                    }
+                    else {
+                        // Invalid User ID supplied
+                        res.status(422).json({ error: 'No ID Supplied' });
+                    }
                 }
                 else {
-                    // Invalid User ID supplied
-                    res.status(422).json({ error: 'No ID Supplied' });
+                    // Unauthorised
+                    res.status(401).json({ error: 'Unauthorised' });
                 }
-                // } else {
-                //   // Unauthorised
-                //   res.status(401).json({ error: 'Unauthorised' });
-                // }
             }
             catch (err) {
                 // General 500 error

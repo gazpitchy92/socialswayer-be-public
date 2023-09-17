@@ -18,7 +18,6 @@ const queries_1 = __importDefault(require("../database/queries"));
 // The NewsAPI Endpoint returns current news and alerts for SocialSwayer systems.
 // This API Endpoint is public and does not require auth.
 class NewsApi {
-    // Get DB connection object
     constructor() {
         this.db = database_1.default.getInstance();
         this.queries = new queries_1.default();

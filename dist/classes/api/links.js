@@ -18,7 +18,6 @@ const queries_1 = __importDefault(require("../database/queries"));
 // The LinksAPI Endpoint returns a list of current affiliate links for socialSwayer users.
 // This API Endpoint is public and does not require auth.
 class LinksApi {
-    // Get DB connection object
     constructor() {
         this.db = database_1.default.getInstance();
         this.queries = new queries_1.default();

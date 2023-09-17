@@ -1,6 +1,6 @@
 "use strict";
-// This is the main file for launching node.
-// It specifies our endpoints and routing logic.
+// This is the main file for launching.
+// It specifies the endpoints and routing logic.
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {

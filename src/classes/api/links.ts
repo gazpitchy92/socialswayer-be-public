@@ -2,17 +2,17 @@ import express, { Request, Response } from 'express';
 import Database from '../database/database';
 import Queries from '../database/queries';
 import { RowDataPacket } from 'mysql2/promise';
-import { LinkEntry } from '../types';
+import entry from '../types';
 
 // This class is used for the LinksAPI Endpoint.
 // The LinksAPI Endpoint returns a list of current affiliate links for socialSwayer users.
 // This API Endpoint is public and does not require auth.
 
 class LinksApi {
+
+  // Constructor
   private db: Database;
   private queries: Queries;
-
-  // Get DB connection object
   constructor() {
     this.db = Database.getInstance();
     this.queries = new Queries();
@@ -29,7 +29,7 @@ class LinksApi {
         this.queries.links()
       );
       // Build the JSON with returned DB data
-      const data: LinkEntry[] = rows.map((row: any) => ({
+      const data: entry.link[] = rows.map((row: any) => ({
         name: row.name,
         url: row.url,
         icon: row.icon

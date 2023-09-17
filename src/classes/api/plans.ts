@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import Database from '../database/database';
 import Queries from '../database/queries';
 import { RowDataPacket } from 'mysql2/promise';
-import { PlansEntry } from '../types';
+import entry from '../types';
 import Auth from '../auth';
 
 
@@ -11,11 +11,11 @@ import Auth from '../auth';
 // This API Endpoint requires the User to supply an ID and aslo an authorization token header.
 
 class PlansApi {
+  
+  // Constructor
   private db: Database;
   private auth: Auth;
   private queries: Queries;
-
-  // Get DB connection and Auth object
   constructor() {
     this.db = Database.getInstance();
     this.auth = new Auth();
@@ -26,7 +26,7 @@ class PlansApi {
   public async getPlans(req: Request, res: Response): Promise<void> {
     try {
       // Check auth
-      //if (await this.auth.checkAuth(req, res)) {
+      if (await this.auth.checkAuth(req, res)) {
         const id = req.query.id as string | undefined; 
         if (id != undefined) {
           // Connect to the database
@@ -37,7 +37,7 @@ class PlansApi {
             this.queries.plans(),
             [id]
           );
-          const data: PlansEntry[] = rows.map((row: any) => ({
+          const data: entry.plan[] = rows.map((row: any) => ({
             status: row.status,
             name: row.name,
             url: row.url,
@@ -53,10 +53,10 @@ class PlansApi {
           // Invalid User ID supplied
           res.status(422).json({ error: 'No ID Supplied' });
         }
-      // } else {
-      //   // Unauthorised
-      //   res.status(401).json({ error: 'Unauthorised' });
-      // }
+      } else {
+        // Unauthorised
+        res.status(401).json({ error: 'Unauthorised' });
+      }
     } catch (err) {
       // General 500 error
       console.error(err);

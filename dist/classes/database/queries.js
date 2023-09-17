@@ -15,10 +15,6 @@ class Queries {
     guides() {
         return 'SELECT * FROM guides';
     }
-    // User Plan
-    userPlan() {
-        return 'SELECT plan_id FROM user_plans WHERE user_id = ?';
-    }
     // PlansAPI
     plans() {
         return 'SELECT p.* FROM plans AS p INNER JOIN user_plans AS up ON p.id = up.plan_id WHERE up.user_id = ?';

@@ -17,12 +17,14 @@ class Auth {
   // The function returns true or false depending on the results of the check. 
   public async checkAuth(req: Request, res: Response): Promise<boolean> {
     try {
+        
         // Connect to the database
         await this.db.connect();
         const connection = this.db.getConnection();
         // Get initial variables
         const id = req.query.id as string | undefined; 
-        const authorizationHeader = req.headers.Authorization || req.headers.authorization;
+        const authorizationHeader = req.headers.Authorization || req.headers.authorization as string | undefined;
+        if (authorizationHeader === undefined || id === undefined) return false;
         // Query the database
         const [rows] = await connection.query<RowDataPacket[]>(
             this.queries.auth(),

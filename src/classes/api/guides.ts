@@ -2,17 +2,17 @@ import express, { Request, Response } from 'express';
 import Database from '../database/database';
 import Queries from '../database/queries';
 import { RowDataPacket } from 'mysql2/promise';
-import { GuideEntry } from '../types';
+import entry from '../types';
 
 // This class is used for the GuidesAPI Endpoint.
 // The GuidesAPI Endpoint returns a list of current tutorials and guides for users.
 // This API Endpoint is public and does not require auth.
 
 class GuidesApi {
+
+  // Contructor
   private db: Database;
   private queries: Queries;
-
-  // Get DB connection object
   constructor() {
     this.db = Database.getInstance();
     this.queries = new Queries();
@@ -29,7 +29,7 @@ class GuidesApi {
         this.queries.guides()
       );
       // Build the JSON with returned DB data
-      const data: GuideEntry[] = rows.map((row: any) => ({
+      const data: entry.guide[] = rows.map((row: any) => ({
         name: row.name,
         url: row.url
       }));

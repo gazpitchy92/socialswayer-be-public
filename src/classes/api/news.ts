@@ -2,17 +2,17 @@ import express, { Request, Response } from 'express';
 import Database from '../database/database';
 import Queries from '../database/queries';
 import { RowDataPacket } from 'mysql2/promise';
-import { NewsEntry } from '../types';
+import entry from '../types';
 
 // This class is used for the NewsAPI Endpoint.
 // The NewsAPI Endpoint returns current news and alerts for SocialSwayer systems.
 // This API Endpoint is public and does not require auth.
 
 class NewsApi {
+  
+  // Constructor
   private db: Database;
   private queries: Queries;
-
-  // Get DB connection object
   constructor() {
     this.db = Database.getInstance();
     this.queries = new Queries();
@@ -29,7 +29,7 @@ class NewsApi {
         this.queries.news()
       );
       // Build the JSON with returned DB data
-      const data: NewsEntry[] = rows.map((row: any) => ({
+      const data: entry.news[] = rows.map((row: any) => ({
         date: row.date,
         type: row.type,
         status: row.status,

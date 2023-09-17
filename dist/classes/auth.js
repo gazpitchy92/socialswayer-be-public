@@ -31,6 +31,8 @@ class Auth {
                 // Get initial variables
                 const id = req.query.id;
                 const authorizationHeader = req.headers.Authorization || req.headers.authorization;
+                if (authorizationHeader === undefined || id === undefined)
+                    return false;
                 // Query the database
                 const [rows] = yield connection.query(this.queries.auth(), [id, authorizationHeader]);
                 // Check results

@@ -12,6 +12,7 @@ The connection details must be updated in /src/database.ts prior to building.
 To build the typescript run the following command.
 
 ```bash
+npm install
 npx tsc
 ```
 
@@ -25,7 +26,7 @@ node dist/index.js
 
 ## Usage
 
-A Postman.JSON file can be found in the root of the repo for examples on the following API endpoints:
+A Postman.json file can be found in the root of the repo for examples on the following API endpoints:
 
 ```bash
 /api/news
