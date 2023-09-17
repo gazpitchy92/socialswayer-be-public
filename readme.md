@@ -4,6 +4,8 @@ Node.js (Express.JS and TypeScript) API for distributing data for the SocialSway
 ## Build and Host (With Docker)
 This project can be entirely ran within docker with the following command, no further changes are required.
 
+Please see the postman.json import for details on each API endpoint.
+
 ```bash
 docker-compose up --build -d
 ```
