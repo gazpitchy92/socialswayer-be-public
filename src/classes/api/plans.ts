@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
-import Database from './database';
+import Database from '../database';
 import { RowDataPacket } from 'mysql2/promise';
 import { PlansEntry } from '../types';
-import Auth from './auth';
+import Auth from '../auth';
 
 
 // This class is used for the PlansAPI Endpoint.
@@ -13,7 +13,7 @@ class PlansApi {
   private db: Database;
   private auth: Auth;
 
-  // Get DB connection object
+  // Get DB connection and Auth object
   constructor() {
     this.db = Database.getInstance();
     this.auth = new Auth();

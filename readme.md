@@ -3,7 +3,7 @@
 Express.JS and TypeScript API for distributing data for the SocialSwayer front-end.
 
 ## Build
-The backup of the Mysql database can be found in /backup/members.sql. 
+The backup of the Mysql database can be found in the /database/ directory. 
 
 A MySQL database should be built with these files. 
 

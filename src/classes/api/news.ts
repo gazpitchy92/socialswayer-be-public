@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import Database from './database';
+import Database from '../database';
 import { RowDataPacket } from 'mysql2/promise';
 import { NewsEntry } from '../types';
 
