@@ -22,7 +22,7 @@ app.get('/api/links', async (req, res) => { linksApi.getLinks(req, res); }); // 
 app.get('/api/plans', async (req, res) => { 
   const id = req.query.id as string | undefined; 
   plansApi.getPlans(req, res, id); 
-}); // GET /api/plans/:id
+}); // GET /api/plans?id=:id
 
 // Start API
 app.listen(port, () => {
