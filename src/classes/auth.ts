@@ -1,13 +1,16 @@
 import express, { Request, Response } from 'express';
-import Database from './database';
+import Database from './database/database';
+import Queries from './database/queries';
 import { RowDataPacket } from 'mysql2/promise';
 
 class Auth {
   private db: Database;
+  private queries: Queries;
 
   // Get DB connection object
   constructor() {
     this.db = Database.getInstance();
+    this.queries = new Queries();
   }
 
   // This will check the supplied ID in the request against a token supplied in headers.Authorization.
@@ -22,7 +25,7 @@ class Auth {
         const authorizationHeader = req.headers.Authorization || req.headers.authorization;
         // Query the database
         const [rows] = await connection.query<RowDataPacket[]>(
-            'SELECT * FROM api_tokens WHERE user_id = ? AND token = ?',
+            this.queries.auth(),
             [id,authorizationHeader]
         );
         // Check results

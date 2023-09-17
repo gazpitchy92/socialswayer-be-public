@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
-import Database from '../database';
+import Database from '../database/database';
+import Queries from '../database/queries';
 import { RowDataPacket } from 'mysql2/promise';
 import { GuideEntry } from '../types';
 
@@ -9,10 +10,12 @@ import { GuideEntry } from '../types';
 
 class GuidesApi {
   private db: Database;
+  private queries: Queries;
 
   // Get DB connection object
   constructor() {
     this.db = Database.getInstance();
+    this.queries = new Queries();
   }
 
   // This class returns the JSON object for each tutorial or guide entry. 
@@ -22,7 +25,9 @@ class GuidesApi {
       await this.db.connect();
       const connection = this.db.getConnection();
       // Query the guides table
-      const [rows] = await connection.query<RowDataPacket[]>('SELECT * FROM guides');
+      const [rows] = await connection.query<RowDataPacket[]>(
+        this.queries.guides()
+      );
       // Build the JSON with returned DB data
       const data: GuideEntry[] = rows.map((row: any) => ({
         name: row.name,

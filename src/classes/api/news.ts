@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
-import Database from '../database';
+import Database from '../database/database';
+import Queries from '../database/queries';
 import { RowDataPacket } from 'mysql2/promise';
 import { NewsEntry } from '../types';
 
@@ -9,10 +10,12 @@ import { NewsEntry } from '../types';
 
 class NewsApi {
   private db: Database;
+  private queries: Queries;
 
   // Get DB connection object
   constructor() {
     this.db = Database.getInstance();
+    this.queries = new Queries();
   }
 
   // This class returns the JSON object for each news entry. 
@@ -22,7 +25,9 @@ class NewsApi {
       await this.db.connect();
       const connection = this.db.getConnection();
       // Query the news table
-      const [rows] = await connection.query<RowDataPacket[]>('SELECT * FROM news');
+      const [rows] = await connection.query<RowDataPacket[]>(
+        this.queries.news()
+      );
       // Build the JSON with returned DB data
       const data: NewsEntry[] = rows.map((row: any) => ({
         date: row.date,

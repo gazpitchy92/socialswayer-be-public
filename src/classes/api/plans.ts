@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
-import Database from '../database';
+import Database from '../database/database';
+import Queries from '../database/queries';
 import { RowDataPacket } from 'mysql2/promise';
 import { PlansEntry } from '../types';
 import Auth from '../auth';
@@ -12,11 +13,13 @@ import Auth from '../auth';
 class PlansApi {
   private db: Database;
   private auth: Auth;
+  private queries: Queries;
 
   // Get DB connection and Auth object
   constructor() {
     this.db = Database.getInstance();
     this.auth = new Auth();
+    this.queries = new Queries();
   }
 
   // This class returns the JSON object for each subscription plan the user has. 
@@ -31,7 +34,7 @@ class PlansApi {
           const connection = this.db.getConnection();
           // Query the plans table
           const [rows] = await connection.query<RowDataPacket[]>(
-            'SELECT * FROM plans WHERE id = ?',
+            this.queries.plans(),
             [id]
           );
           // Build the JSON with returned DB data

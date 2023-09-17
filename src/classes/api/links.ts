@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
-import Database from '../database';
+import Database from '../database/database';
+import Queries from '../database/queries';
 import { RowDataPacket } from 'mysql2/promise';
 import { LinkEntry } from '../types';
 
@@ -9,10 +10,12 @@ import { LinkEntry } from '../types';
 
 class LinksApi {
   private db: Database;
+  private queries: Queries;
 
   // Get DB connection object
   constructor() {
     this.db = Database.getInstance();
+    this.queries = new Queries();
   }
 
   // This class returns the JSON object for each links entry. 
@@ -22,7 +25,9 @@ class LinksApi {
       await this.db.connect();
       const connection = this.db.getConnection();
       // Query the links table
-      const [rows] = await connection.query<RowDataPacket[]>('SELECT * FROM links');
+      const [rows] = await connection.query<RowDataPacket[]>(
+        this.queries.links()
+      );
       // Build the JSON with returned DB data
       const data: LinkEntry[] = rows.map((row: any) => ({
         name: row.name,
