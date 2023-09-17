@@ -1,14 +1,14 @@
 # SocialSwayer API
 Node.js (Express.JS and TypeScript) API for distributing data for the SocialSwayer front-end.
 
-## Build
+## Build and Host (With Docker)
 This project can be entirely ran within docker with the following command.
 
 ```bash
 docker-compose up
 ```
 
-## Build
+## Build (Without Docker)
 The backup of the Mysql database can be found in the /database/ directory. 
 
 A MySQL database should be built with these files. 
@@ -22,7 +22,7 @@ npm install
 npx tsc
 ```
 
-## Hosting
+## Host (Without Docker)
 To run the server on the default http://localhost:3000 run the following command:
 
 ```bash
