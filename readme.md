@@ -40,7 +40,7 @@ Location  | Usage
 /classes/database/database.ts   |   Contains connection functions for the database
 /classes/database/queries.ts  |   Contains all of the database queries used
 
-## Build (Without Docker)
+### Build (Without Docker)
 The backup of the Mysql database can be found in the /database/ directory. 
 
 A MySQL database should be built with these files. 
@@ -54,7 +54,7 @@ npm install
 npx tsc
 ```
 
-## Host (Without Docker)
+### Host (Without Docker)
 To run the server on the default http://localhost:3000 run the following command:
 
 ```bash
