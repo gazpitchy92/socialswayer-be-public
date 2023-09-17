@@ -12,42 +12,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const database_1 = __importDefault(require("./database/database"));
-const queries_1 = __importDefault(require("./database/queries"));
-class Auth {
+const database_1 = __importDefault(require("../database/database"));
+const queries_1 = __importDefault(require("../database/queries"));
+// This class is used for the NewsAPI Endpoint.
+// The NewsAPI Endpoint returns current news and alerts for SocialSwayer systems.
+// This API Endpoint is public and does not require auth.
+class NewsApi {
     // Get DB connection object
     constructor() {
         this.db = database_1.default.getInstance();
         this.queries = new queries_1.default();
     }
-    // This will check the supplied ID in the request against a token supplied in headers.Authorization.
-    // The function returns true or false depending on the results of the check. 
-    checkAuth(req, res) {
+    // This class returns the JSON object for each news entry. 
+    getNews(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 // Connect to the database
                 yield this.db.connect();
                 const connection = this.db.getConnection();
-                // Get initial variables
-                const id = req.query.id;
-                const authorizationHeader = req.headers.Authorization || req.headers.authorization;
-                // Query the database
-                const [rows] = yield connection.query(this.queries.auth(), [id, authorizationHeader]);
-                // Check results
-                if (rows.length === 0) {
-                    // Failure
-                    return false;
-                }
-                else {
-                    // Success
-                    return true;
-                }
+                // Query the news table
+                const [rows] = yield connection.query(this.queries.news());
+                // Build the JSON with returned DB data
+                const data = rows.map((row) => ({
+                    date: row.date,
+                    type: row.type,
+                    status: row.status,
+                    message: row.message
+                }));
+                // Return the JSON 
+                res.json(data);
             }
             catch (err) {
-                // Return failure incase of exception
-                return false;
+                res.status(500).json({ error: 'Internal Server Error' });
             }
         });
     }
 }
-exports.default = Auth;
+exports.default = NewsApi;
