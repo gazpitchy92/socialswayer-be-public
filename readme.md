@@ -1,5 +1,5 @@
 # SocialSwayer API
-node.js (Express.JS) and TypeScript API for distributing data for the SocialSwayer front-end.
+Node.js (Express.JS and TypeScript) API for distributing data for the SocialSwayer front-end.
 
 ## Build
 The backup of the Mysql database can be found in the /database/ directory. 
